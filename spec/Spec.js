@@ -2,38 +2,32 @@ const validatePassword = require("../index.js");
 
 
 describe("PasswordSpec", function() { 
-    it("should be larger than 8 chars", function(){
-        expect(validatePassword.validLength).toBeDefined();
-        expect(validatePassword.validLength("hello world")).toBe(true);
-        expect(function() {
-            validatePassword.validLength("hello");
-        }).toThrow();
-    });
     it("should not be null", function(){
         expect(validatePassword.isvalid).toBeDefined();
-        expect(validatePassword.isvalid).toThrow();
-        expect(validatePassword.isvalid("HelloWorld123")).toBe(true)
+        expect(validatePassword.isvalid("HelloWorld123")).toBe(true);
+        expect(function() {
+            validatePassword.isvalid();
+        }).toThrow(new Error("password is null or empty"));
+    });
+    it("should be larger than 8 chars", function(){
+        expect(function() {
+            validatePassword.isvalid("Hello1");
+        }).toThrow(new Error("password too short"));
     });
     it("should have one uppercase letter at least", function(){
-        expect(validatePassword.hasUpper).toBeDefined();
-        expect(validatePassword.hasUpper("Hello world")).toBe(true);
         expect(function() {
-            validatePassword.hasUpper("hello world");
-        }).toThrow();
+            validatePassword.isvalid("hello world1");
+        }).toThrow(new Error("provide an uppercase letter"));
     });
     it("should have one lowercase letter at least", function(){
-        expect(validatePassword.hasLower).toBeDefined();
-        expect(validatePassword.hasLower("hELLO WORLD")).toBe(true);
         expect(function() {
-            validatePassword.hasLower("HELLO WORLD");
-        }).toThrow();
+            validatePassword.isvalid("HELLO WORLD1");
+        }).toThrow(new Error("provide a lowercase letter"));
     })
     it("should have one number at least", function(){
-        expect(validatePassword.hasNumber).toBeDefined();
-        expect(validatePassword.hasNumber("hello world 1")).toBe(true);
         expect(function() {
-            validatePassword.hasNumber("hello world");
-        }).toThrow();
+            validatePassword.isvalid("Hello world");
+        }).toThrow(new Error("provide a number"));
     })
 });
 
