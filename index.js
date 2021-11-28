@@ -1,34 +1,10 @@
 function isvalid(str){
     var pass = 0, fail = 0;
     if(str){
-        if(validLength(str))
-        {
-            pass += 1
-        }
-        else {
-            fail += 1
-        }
-        if(hasUpper(str))
-        {
-            pass += 1
-        }
-        else {
-            fail += 1
-        }
-        if(hasLower(str))
-        {
-            pass += 1
-        }
-        else {
-            fail += 1
-        }
-        if(hasNumber(str))
-        {
-            pass += 1
-        }
-        else {
-            fail += 1
-        }
+        (validLength(str)) ? pass += 1 : fail += 1;
+        (hasUpper(str)) ? pass += 1 : fail += 1;
+        (hasLower(str)) ? pass += 1 : fail += 1;
+        (hasNumber(str)) ? pass += 1 : fail += 1;
         if(pass >= 2){
             return true;
         }
@@ -40,52 +16,19 @@ function isvalid(str){
 }
 
 function validLength(str){
-    if(str.length < 8)
-    {
-        //throw new Error("password too short");
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+    return (str.length >= 8) ? true : false;
 }
 
 function hasUpper(str){
-    if(str.toLowerCase() == str)
-    {
-        //throw new Error("provide an uppercase letter");
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+    return (str.toLowerCase() != str) ? true : false; 
 }
 
 function hasLower(str){
-    if(str.toUpperCase() == str)
-    {
-        //throw new Error("provide a lowercase letter");
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+    return (str.toUpperCase() != str) ? true : false;
 }
 
 function hasNumber(str){
-    if(!(/[1-9]/.test(str)))
-    {
-        //throw new Error("provide a number");
-        return false;
-    }
-    else
-    {
-        return true;
-    }
-    
+    return (/[1-9]/.test(str)) ? true : false;
 }
 
 module.exports = {
