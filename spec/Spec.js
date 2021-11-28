@@ -1,4 +1,4 @@
-const validatePassword = require("../index.js");
+const validatePassword = require("../src/index.js");
 
 describe("new passwordSpec", function() {
     it("should return valid for 3 out of 5 tests", function(){
