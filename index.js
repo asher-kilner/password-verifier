@@ -3,8 +3,15 @@ function isvalid(str){
     if(str){
         (validLength(str)) ? pass += 1 : fail += 1;
         (hasUpper(str)) ? pass += 1 : fail += 1;
-        (hasLower(str)) ? pass += 1 : fail += 1;
         (hasNumber(str)) ? pass += 1 : fail += 1;
+        if(hasLower(str))
+        {
+            pass += 1
+        } 
+        else{
+            throw new Error("must have at least one lowercase letter");
+        }
+
         if(pass >= 2){
             return true;
         }

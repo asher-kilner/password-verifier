@@ -3,10 +3,19 @@ const validatePassword = require("../index.js");
 describe("new passwordSpec", function() {
     it("should return valid for 3 out of 5 tests", function(){
         expect(validatePassword.isvalid).toBeDefined();
-        expect(validatePassword.isvalid("helloworld1")).toBe(true);
+        expect(validatePassword.isvalid("helloworld123")).toBe(true);
+    });
+    it("should fail on less than 3 tests", function(){
         expect(function() {
-            validatePassword.isvalid("HELLO");
+            validatePassword.isvalid("hello");
         }).toThrow(new Error("must have three of the conditions {1 upper, 1 lower, 1 number, 8+ chars, not null}"));
+    });
+    it("should fail when no lowercase letters present", function(){
+        expect(function() {
+            validatePassword.isvalid("HELLOWORLD123");
+        }).toThrow(new Error("must have at least one lowercase letter"));
+    });
+    it("should fail when no password given", function(){
         expect(function() {
             validatePassword.isvalid();
         }).toThrow(new Error("password is null or empty"));
