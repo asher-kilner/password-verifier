@@ -1,8 +1,11 @@
 function isvalid(str){
-    var pass = 0, fail = 0;
+    var pass = 0;
     if(str){
-        (validLength(str)) ? pass += 1 : fail += 1;
-        (hasNumber(str)) ? pass += 1 : fail += 1;
+        if(validLength(str))
+            pass += 1;
+        if(hasNumber(str)) 
+            pass += 1;
+            
         var upperLower = UpperLower(str);
         if(upperLower == "lower")
         {
