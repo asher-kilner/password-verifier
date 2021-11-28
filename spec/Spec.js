@@ -1,7 +1,19 @@
 const validatePassword = require("../index.js");
 
+describe("new passwordSpec", function() {
+    it("should return valid for 3 out of 5 tests", function(){
+        expect(validatePassword.isvalid).toBeDefined();
+        expect(validatePassword.isvalid("helloworld1")).toBe(true);
+        expect(function() {
+            validatePassword.isvalid("HELLO");
+        }).toThrow(new Error("must have three of the conditions {1 upper, 1 lower, 1 number, 8+ chars, not null}"));
+        expect(function() {
+            validatePassword.isvalid();
+        }).toThrow(new Error("password is null or empty"));
+    });
+});
 
-describe("PasswordSpec", function() { 
+xdescribe("PasswordSpec", function() { 
     it("should not be null", function(){
         expect(validatePassword.isvalid).toBeDefined();
         expect(validatePassword.isvalid("HelloWorld123")).toBe(true);
