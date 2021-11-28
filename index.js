@@ -2,16 +2,20 @@ function isvalid(str){
     var pass = 0, fail = 0;
     if(str){
         (validLength(str)) ? pass += 1 : fail += 1;
-        (hasUpper(str)) ? pass += 1 : fail += 1;
         (hasNumber(str)) ? pass += 1 : fail += 1;
-        if(hasLower(str))
+        var upperLower = UpperLower(str);
+        if(upperLower == "lower")
         {
             pass += 1
         } 
+        else if(upperLower == "mixed")
+        {
+            pass += 2
+        }
         else{
             throw new Error("must have at least one lowercase letter");
         }
-
+        
         if(pass >= 2){
             return true;
         }
@@ -25,15 +29,17 @@ function isvalid(str){
 function validLength(str){
     return (str.length >= 8) ? true : false;
 }
-
-function hasUpper(str){
-    return (str.toLowerCase() != str) ? true : false; 
+function UpperLower(str){
+    if(/[a-z]/.test(str) && /[A-Z]/.test(str)){
+        return "mixed"
+    }
+    else if(/[a-z]/.test(str)){
+        return "lower"
+    }
+    else{
+        return "upper"
+    }
 }
-
-function hasLower(str){
-    return (str.toUpperCase() != str) ? true : false;
-}
-
 function hasNumber(str){
     return (/[1-9]/.test(str)) ? true : false;
 }
